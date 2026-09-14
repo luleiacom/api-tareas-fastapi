@@ -1,6 +1,6 @@
-# API de Tareas — FastAPI
+# API de Tareas — FastAPI + SQLAlchemy
 
-API REST simple para gestionar una lista de tareas (to-do list), construida con FastAPI como proyecto de aprendizaje backend.
+API REST para gestionar una lista de tareas (to-do list), construida con FastAPI y persistencia en base de datos SQLite, como proyecto de aprendizaje backend.
 
 ## Funcionalidades
 
@@ -8,17 +8,20 @@ API REST simple para gestionar una lista de tareas (to-do list), construida con 
 - Listar tareas
 - Actualizar tareas (marcar como completadas, editar título)
 - Borrar tareas
+- Persistencia real en base de datos (los datos no se pierden al reiniciar el servidor)
 
 ## Tecnologías
 
 - Python
 - FastAPI
+- SQLAlchemy (ORM)
+- SQLite
 - Uvicorn
 
 ## Cómo correrlo localmente
 
 \`\`\`bash
-pip install fastapi uvicorn
+pip install fastapi uvicorn sqlalchemy
 python -m uvicorn main:app --reload
 \`\`\`
 
@@ -34,7 +37,16 @@ Después abrí `http://127.0.0.1:8000/docs` para probar los endpoints desde la d
 | PUT | `/tareas/{id}` | Actualizar una tarea |
 | DELETE | `/tareas/{id}` | Borrar una tarea |
 
+## Estructura del proyecto
+
+\`\`\`
+main.py       → endpoints de la API
+models.py     → modelo de base de datos (SQLAlchemy)
+database.py   → configuración de la conexión a la base de datos
+\`\`\`
+
 ## Próximos pasos
 
-- Persistencia con base de datos (SQLite)
-- Autenticación de usuarios
+- Autenticación de usuarios (login/registro con JWT)
+- Que cada usuario vea solo sus propias tareas
+- Deploy en un servidor real
